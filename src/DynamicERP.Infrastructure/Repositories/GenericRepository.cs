@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using DynamicERP.Core.Entities.BaseClasses;
+using DynamicERP.Core.Entities;
 using DynamicERP.Core.Interfaces.Repositories;
 using DynamicERP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -23,13 +23,11 @@ public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey
         _dbSet = context.Set<TEntity>();
     }
 
-    public virtual IQueryable<TEntity> GetAll(bool isTracking = false, CancellationToken cancellationToken = default)
+    public virtual async Task<IQueryable<TEntity>> GetAllAsync(bool isTracking = false, CancellationToken cancellationToken = default)
     {
         var query = _dbSet.AsQueryable();
         if (!isTracking)
-        {
             query = query.AsNoTracking();
-        }
         return query;
     }
 
@@ -37,9 +35,7 @@ public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey
     {
         var query = _dbSet.AsQueryable();
         if (!isTracking)
-        {
             query = query.AsNoTracking();
-        }
         return await query.FirstOrDefaultAsync(e => e.Id!.Equals(id), cancellationToken);
     }
 
@@ -57,15 +53,11 @@ public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey
         return entity;
     }
 
-    public virtual async Task<bool> DeleteAsync(TKey id, CancellationToken cancellationToken = default)
+    public virtual async Task DeleteAsync(TKey id, CancellationToken cancellationToken = default)
     {
         var entity = await GetByIdAsync(id, true, cancellationToken);
-        if (entity == null)
-            return false;
-
-        _dbSet.Remove(entity);
-        await _context.SaveChangesAsync(cancellationToken);
-        return true;
+        if (entity != null)
+            _dbSet.Remove(entity);
     }
 
     public virtual async Task<bool> ExistsAsync(TKey id, CancellationToken cancellationToken = default)
@@ -73,24 +65,20 @@ public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey
         return await _dbSet.AnyAsync(e => e.Id!.Equals(id), cancellationToken);
     }
 
-    public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, bool isTracking = false, CancellationToken cancellationToken = default)
+    public virtual async Task<IQueryable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, bool isTracking = false, CancellationToken cancellationToken = default)
     {
         var query = _dbSet.Where(predicate);
         if (!isTracking)
-        {
             query = query.AsNoTracking();
-        }
         return query;
     }
 
     public virtual async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, bool isTracking = false, CancellationToken cancellationToken = default)
     {
-        var query = _dbSet.Where(predicate);
+        var query = _dbSet.AsQueryable();
         if (!isTracking)
-        {
             query = query.AsNoTracking();
-        }
-        return await query.FirstOrDefaultAsync(cancellationToken);
+        return await query.FirstOrDefaultAsync(predicate, cancellationToken);
     }
 
     public virtual async Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
@@ -104,8 +92,11 @@ public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey
         if (entity == null)
             return false;
 
-        entity.IsActive = false;
-        await _context.SaveChangesAsync(cancellationToken);
+        if (entity is not BaseFullEntity<TKey> fullEntity)
+            return false;
+
+        fullEntity.IsActive = false;
+        await UpdateAsync(entity, cancellationToken);
         return true;
     }
 
@@ -115,8 +106,11 @@ public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey
         if (entity == null)
             return false;
 
-        entity.IsActive = true;
-        await _context.SaveChangesAsync(cancellationToken);
+        if (entity is not BaseFullEntity<TKey> fullEntity)
+            return false;
+
+        fullEntity.IsActive = true;
+        await UpdateAsync(entity, cancellationToken);
         return true;
     }
 } 
