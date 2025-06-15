@@ -1,6 +1,6 @@
-using DynamicERP.Core.Entities.BaseClasses;
+using DynamicERP.Domain.Entities.BaseClasses;
 
-namespace DynamicERP.Core.Entities;
+namespace DynamicERP.Domain.Entities;
 
 public class Tenant : BaseFullEntity
 {

@@ -1,4 +1,4 @@
-using DynamicERP.Core.Entities;
+using DynamicERP.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

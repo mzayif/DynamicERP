@@ -1,7 +1,6 @@
-using DynamicERP.Core.Entities.BaseClasses;
-using System;
+using DynamicERP.Domain.Entities.BaseClasses;
 
-namespace DynamicERP.Core.Entities;
+namespace DynamicERP.Domain.Entities;
 
 public class User : BaseTenantEntity
 {

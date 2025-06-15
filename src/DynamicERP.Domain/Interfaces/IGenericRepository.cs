@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
-using DynamicERP.Core.Entities.BaseClasses;
+using DynamicERP.Domain.Entities.BaseClasses;
 
-namespace DynamicERP.Core.Interfaces.Repositories;
+namespace DynamicERP.Domain.Interfaces;
 
 /// <summary>
 /// Tüm entity'ler için temel CRUD operasyonlarını sağlayan generic repository interface'i.

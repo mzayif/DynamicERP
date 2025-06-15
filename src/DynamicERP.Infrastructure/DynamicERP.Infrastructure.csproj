@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DynamicERP.Core\DynamicERP.Core.csproj" />
+    <ProjectReference Include="..\DynamicERP.Domain\DynamicERP.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

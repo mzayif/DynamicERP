@@ -1,6 +1,6 @@
-using DynamicERP.Core.Entities;
+using DynamicERP.Domain.Entities;
 
-namespace DynamicERP.Core.Interfaces.Repositories;
+namespace DynamicERP.Domain.Interfaces;
 
 public interface IUserRepository : IGenericRepository<User, Guid>
 {

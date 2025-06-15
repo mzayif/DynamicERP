@@ -1,18 +1,21 @@
-using DynamicERP.Core.Entities;
+using DynamicERP.Core.RequestModels;
+using DynamicERP.Core.ResponseModels;
+using DynamicERP.Core.Results;
 
 namespace DynamicERP.Core.Interfaces.Services;
 
 public interface IUserService
 {
-    Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
-    Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
-    Task<User?> GetByUsernameAsync(string username, CancellationToken cancellationToken = default);
-    Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken = default);
-    Task<User> CreateUserAsync(User user, string? password = null, CancellationToken cancellationToken = default);
-    Task<User> CreateExternalUserAsync(User user, string externalId, string provider, CancellationToken cancellationToken = default);
-    Task UpdateUserAsync(User user, CancellationToken cancellationToken = default);
-    Task DeleteUserAsync(Guid id, CancellationToken cancellationToken = default);
-    Task<bool> ValidateCredentialsAsync(string email, string password, CancellationToken cancellationToken = default);
-    Task<bool> ValidateExternalCredentialsAsync(string externalId, string provider, CancellationToken cancellationToken = default);
-    Task UpdateLastLoginAsync(Guid userId, CancellationToken cancellationToken = default);
+    Task<DataResult<UserResponseModel>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<DataResult<UserResponseModel>> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
+    Task<DataResult<UserResponseModel>> GetByUsernameAsync(string username, CancellationToken cancellationToken = default);
+    Task<DataResult<IEnumerable<UserResponseModel>>> GetAllAsync(CancellationToken cancellationToken = default);
+
+    Task<Result> CreateUserAsync(CreateUserRequest user, string? password = null, CancellationToken cancellationToken = default);
+    Task<Result> CreateExternalUserAsync(CreateUserRequest user, string externalId, string provider, CancellationToken cancellationToken = default);
+    Task<Result> UpdateUserAsync(UpdateUserRequest user, CancellationToken cancellationToken = default);
+    Task<Result> DeleteUserAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<Result> ValidateCredentialsAsync(string email, string password, CancellationToken cancellationToken = default);
+    Task<Result> ValidateExternalCredentialsAsync(string externalId, string provider, CancellationToken cancellationToken = default);
+    Task<Result> UpdateLastLoginAsync(Guid userId, CancellationToken cancellationToken = default);
 } 

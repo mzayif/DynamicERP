@@ -1,7 +1,6 @@
-using DynamicERP.Core.Entities.BaseClasses;
-using System.ComponentModel.DataAnnotations;
+using DynamicERP.Domain.Entities.BaseClasses;
 
-namespace DynamicERP.Core.Entities;
+namespace DynamicERP.Domain.Entities;
 
 /// <summary>
 /// Harici kimlik doğrulama sağlayıcılarını yönetmek için kullanılan entity.

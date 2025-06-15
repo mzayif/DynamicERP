@@ -9,13 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DynamicERP.Application\DynamicERP.Application.csproj" />
     <ProjectReference Include="..\DynamicERP.Core\DynamicERP.Core.csproj" />
-    <ProjectReference Include="..\DynamicERP.Infrastructure\DynamicERP.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

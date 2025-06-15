@@ -1,4 +1,4 @@
-namespace DynamicERP.Core.Entities.BaseClasses;
+namespace DynamicERP.Domain.Entities.BaseClasses;
 
 public abstract class BaseFullEntity : BaseCreateEntity<Guid>
 {
@@ -8,4 +8,4 @@ public abstract class BaseFullEntity : BaseCreateEntity<Guid>
     public DateTime? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
     public bool IsActive { get; set; } = true;
-}
+} 

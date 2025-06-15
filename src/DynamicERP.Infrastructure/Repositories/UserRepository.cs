@@ -1,6 +1,5 @@
-using DynamicERP.Core.Entities;
-using DynamicERP.Core.Interfaces;
-using DynamicERP.Core.Interfaces.Repositories;
+using DynamicERP.Domain.Entities;
+using DynamicERP.Domain.Interfaces;
 using DynamicERP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 

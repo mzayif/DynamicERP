@@ -1,8 +1,8 @@
-using System.Linq.Expressions;
-using DynamicERP.Core.Entities.BaseClasses;
-using DynamicERP.Core.Interfaces.Repositories;
+using DynamicERP.Domain.Entities.BaseClasses;
+using DynamicERP.Domain.Interfaces;
 using DynamicERP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DynamicERP.Infrastructure.Repositories;
 

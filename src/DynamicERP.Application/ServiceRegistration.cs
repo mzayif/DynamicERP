@@ -1,9 +1,10 @@
-using DynamicERP.Core.Interfaces.Repositories;
 using DynamicERP.Core.Interfaces.Services;
-using DynamicERP.Infrastructure;
+using DynamicERP.Domain.Interfaces;
 using DynamicERP.Infrastructure.Data;
 using DynamicERP.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace DynamicERP.API;
@@ -22,9 +23,8 @@ public static class ServiceRegistration
         services.AddScoped<IExternalProviderRepository, ExternalProviderRepository>();
 
         // Add Services
-        services.AddScoped<IUserService, UserService>();
-        services.AddScoped<ITenantService, TenantService>();
-        services.AddScoped<IExternalProviderService, ExternalProviderService>();
+        //services.AddScoped<IUserService, UserService>();
+     
 
         // Swagger
         services.AddEndpointsApiExplorer();
