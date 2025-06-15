@@ -1,0 +1,6 @@
+@DynamicERP.API_HostAddress = http://localhost:5245
+
+GET {{DynamicERP.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
