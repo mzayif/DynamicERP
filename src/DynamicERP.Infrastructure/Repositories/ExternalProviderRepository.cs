@@ -1,5 +1,4 @@
 using DynamicERP.Core.Entities;
-using DynamicERP.Core.Interfaces;
 using DynamicERP.Core.Interfaces.Repositories;
 using DynamicERP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -12,13 +11,14 @@ public class ExternalProviderRepository : GenericRepository<ExternalProvider, Gu
     {
     }
 
-    public async Task<ExternalProvider?> GetByCodeAsync(string code)
+    public async Task<ExternalProvider?> GetByCodeAsync(string code, bool isTracking = false, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.FirstOrDefaultAsync(p => p.Code == code);
+        return await FirstOrDefaultAsync(p => p.Code == code, isTracking, cancellationToken);
     }
 
-    public async Task<bool> ExistsByCodeAsync(string code)
+    public async Task<bool> ExistsByCodeAsync(string code, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.AnyAsync(p => p.Code == code);
+        var query = Find(p => p.Code == code, false);
+        return await query.AnyAsync(cancellationToken);
     }
 } 

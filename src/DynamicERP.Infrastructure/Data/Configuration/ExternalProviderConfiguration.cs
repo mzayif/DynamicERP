@@ -13,44 +13,44 @@ public class ExternalProviderConfiguration : IEntityTypeConfiguration<ExternalPr
 
         builder.Property(e => e.Name)
             .IsRequired()
-            .HasMaxLength(ShortText.MaxLength);
+            .HasMaxLength(ValidationRules.ShortText.MaxLength);
 
         builder.Property(e => e.Code)
             .IsRequired()
-            .HasMaxLength(ShortText.MaxLength);
+            .HasMaxLength(ValidationRules.ShortText.MaxLength);
 
         builder.Property(e => e.Description)
-            .HasMaxLength(MediumText.MaxLength);
+            .HasMaxLength(ValidationRules.MediumText.MaxLength);
 
         builder.Property(e => e.ClientId)
-            .HasMaxLength(ShortText.MaxLength);
+            .HasMaxLength(ValidationRules.ShortText.MaxLength);
 
         builder.Property(e => e.ClientSecret)
-            .HasMaxLength(ShortText.MaxLength);
+            .HasMaxLength(ValidationRules.ShortText.MaxLength);
 
         builder.Property(e => e.RedirectUri)
-            .HasMaxLength(Url.MaxLength);
+            .HasMaxLength(ValidationRules.Url.MaxLength);
 
         builder.Property(e => e.AuthorizationEndpoint)
-            .HasMaxLength(Url.MaxLength);
+            .HasMaxLength(ValidationRules.Url.MaxLength);
 
         builder.Property(e => e.TokenEndpoint)
-            .HasMaxLength(Url.MaxLength);
+            .HasMaxLength(ValidationRules.Url.MaxLength);
 
         builder.Property(e => e.UserInfoEndpoint)
-            .HasMaxLength(Url.MaxLength);
+            .HasMaxLength(ValidationRules.Url.MaxLength);
 
         builder.Property(e => e.Scope)
-            .HasMaxLength(MediumText.MaxLength);
+            .HasMaxLength(ValidationRules.MediumText.MaxLength);
 
         builder.Property(e => e.IconUrl)
-            .HasMaxLength(Url.MaxLength);
+            .HasMaxLength(ValidationRules.Url.MaxLength);
 
         builder.Property(e => e.BackgroundColor)
-            .HasMaxLength(ShortText.MaxLength);
+            .HasMaxLength(ValidationRules.ShortText.MaxLength);
 
         builder.Property(e => e.TextColor)
-            .HasMaxLength(ShortText.MaxLength);
+            .HasMaxLength(ValidationRules.ShortText.MaxLength);
 
         builder.HasIndex(e => e.Code)
             .IsUnique();

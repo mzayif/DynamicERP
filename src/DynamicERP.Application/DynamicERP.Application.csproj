@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DynamicERP.Core\DynamicERP.Core.csproj" />
+    <ProjectReference Include="..\DynamicERP.Infrastructure\DynamicERP.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

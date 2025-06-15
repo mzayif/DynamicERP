@@ -1,5 +1,6 @@
 using DynamicERP.Core.Entities;
 using DynamicERP.Core.Interfaces;
+using DynamicERP.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DynamicERP.API.Controllers;

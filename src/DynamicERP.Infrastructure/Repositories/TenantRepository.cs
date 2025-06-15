@@ -1,5 +1,4 @@
 using DynamicERP.Core.Entities;
-using DynamicERP.Core.Interfaces;
 using DynamicERP.Core.Interfaces.Repositories;
 using DynamicERP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -12,13 +11,13 @@ public class TenantRepository : GenericRepository<Tenant, Guid>, ITenantReposito
     {
     }
 
-    public async Task<Tenant?> GetByCodeAsync(string code)
+    public async Task<Tenant?> GetByCodeAsync(string code, bool isTracking = false, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.FirstOrDefaultAsync(t => t.Code == code);
+        return await FirstOrDefaultAsync(t => t.Code == code, isTracking, cancellationToken);
     }
 
-    public async Task<bool> ExistsByCodeAsync(string code)
+    public async Task<bool> ExistsByCodeAsync(string code, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.AnyAsync(t => t.Code == code);
+        return await Find(t => t.Code == code, false).AnyAsync(cancellationToken);
     }
-} 
+}

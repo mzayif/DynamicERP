@@ -4,6 +4,6 @@ namespace DynamicERP.Core.Interfaces.Repositories;
 
 public interface ITenantRepository : IGenericRepository<Tenant, Guid>
 {
-    Task<Tenant?> GetByCodeAsync(string code);
-    Task<bool> ExistsByCodeAsync(string code);
+    Task<Tenant?> GetByCodeAsync(string code, bool isTracking = false, CancellationToken cancellationToken = default);
+    Task<bool> ExistsByCodeAsync(string code, CancellationToken cancellationToken = default);
 } 

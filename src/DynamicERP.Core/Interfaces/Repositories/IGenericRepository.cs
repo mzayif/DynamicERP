@@ -14,8 +14,14 @@ public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TK
     /// Tüm kayıtları IQueryable olarak getirir.
     /// </summary>
     /// <param name="isTracking">Entity Framework change tracking'in aktif olup olmayacağı</param>
-    /// <param name="cancellationToken">İşlemin iptal edilmesi için token</param>
-    IQueryable<TEntity> GetAll(bool isTracking = false, CancellationToken cancellationToken = default);
+    IQueryable<TEntity> GetAll(bool isTracking = false);
+
+    /// <summary>
+    /// Belirtilen koşula göre kayıtları IQueryable olarak getirir.
+    /// </summary>
+    /// <param name="predicate">Filtreleme koşulu</param>
+    /// <param name="isTracking">Entity Framework change tracking'in aktif olup olmayacağı</param>
+    IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, bool isTracking = false);
 
     /// <summary>
     /// Belirtilen ID'ye sahip kaydı getirir.
@@ -44,7 +50,7 @@ public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TK
     /// </summary>
     /// <param name="id">Silinecek kaydın ID'si</param>
     /// <param name="cancellationToken">İşlemin iptal edilmesi için token</param>
-    Task<bool> DeleteAsync(TKey id, CancellationToken cancellationToken = default);
+    Task DeleteAsync(TKey id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Belirtilen ID'ye sahip kaydı iptal eder (IsActive = false).
@@ -66,14 +72,6 @@ public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TK
     /// <param name="id">Kontrol edilecek kaydın ID'si</param>
     /// <param name="cancellationToken">İşlemin iptal edilmesi için token</param>
     Task<bool> ExistsAsync(TKey id, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Belirtilen koşula göre kayıtları IQueryable olarak getirir.
-    /// </summary>
-    /// <param name="predicate">Filtreleme koşulu</param>
-    /// <param name="isTracking">Entity Framework change tracking'in aktif olup olmayacağı</param>
-    /// <param name="cancellationToken">İşlemin iptal edilmesi için token</param>
-    IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, bool isTracking = false, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Belirtilen koşula göre ilk kaydı getirir.

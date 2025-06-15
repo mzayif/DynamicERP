@@ -12,29 +12,29 @@ public class UserRepository : GenericRepository<User, Guid>, IUserRepository
     {
     }
 
-    public async Task<User?> GetByEmailAsync(string email)
+    public async Task<User?> GetByEmailAsync(string email, bool isTracking = false, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.FirstOrDefaultAsync(u => u.Email == email);
+        return await FirstOrDefaultAsync(u => u.Email == email, isTracking, cancellationToken);
     }
 
     public async Task<User?> GetByUsernameAsync(string username)
     {
-        return await _dbSet.FirstOrDefaultAsync(u => u.Username == username);
+        return await DbSet.FirstOrDefaultAsync(u => u.Username == username);
     }
 
     public async Task<User?> GetByExternalIdAsync(string externalId, string provider)
     {
-        return await _dbSet.FirstOrDefaultAsync(u => 
+        return await DbSet.FirstOrDefaultAsync(u =>
             u.ExternalId == externalId && u.ExternalProvider == provider);
     }
 
-    public async Task<bool> ExistsAsync(string email)
+    public async Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.AnyAsync(u => u.Email == email);
+        return await Find(u => u.Email == email).AnyAsync(cancellationToken);
     }
 
     public async Task<bool> ExistsByUsernameAsync(string username)
     {
-        return await _dbSet.AnyAsync(u => u.Username == username);
+        return await DbSet.AnyAsync(u => u.Username == username);
     }
-} 
+}
