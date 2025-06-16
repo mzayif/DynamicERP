@@ -31,7 +31,7 @@ public class PagedResult<T> : DataResult<T>
         int pageNumber,
         int pageSize,
         int totalRecords,
-        string message = null)
+        string? message = null)
     {
         return new PagedResult<T>(true, message ?? Messages.GetMessage(MessageCodes.Common.Success), data, pageNumber, pageSize, totalRecords);
     }
@@ -42,6 +42,6 @@ public class PagedResult<T> : DataResult<T>
         int pageSize,
         List<string>? errors = null)
     {
-        return new PagedResult<T>(false, message, null, pageNumber, pageSize, 0, errors);
+        return new PagedResult<T>(false, message, default, pageNumber, pageSize, 0, errors);
     }
 } 
