@@ -1,7 +1,10 @@
+using DynamicERP.Application.Services;
 using DynamicERP.Core.Interfaces.Services;
 using DynamicERP.Domain.Interfaces;
 using DynamicERP.Infrastructure.Data;
 using DynamicERP.Infrastructure.Repositories;
+using Mapster;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,9 +26,8 @@ public static class ServiceRegistration
         services.AddScoped<IExternalProviderRepository, ExternalProviderRepository>();
 
         // Add Services
-        //services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUserService, UserService>();
      
-
         // Swagger
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(c =>
@@ -42,6 +44,11 @@ public static class ServiceRegistration
                 }
             });
         });
+
+        // Mapster Configuration
+        TypeAdapterConfig.GlobalSettings.Default.NameMatchingStrategy(NameMatchingStrategy.Flexible);
+        services.AddSingleton(TypeAdapterConfig.GlobalSettings);
+        services.AddScoped<IMapper, ServiceMapper>();
 
         return services;
     }

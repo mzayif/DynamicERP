@@ -15,6 +15,7 @@ public static class Messages
             [MessageCodes.Common.AccountLocked] = "Hesabınız kilitlendi. Lütfen daha sonra tekrar deneyin.",
             [MessageCodes.Common.Error] = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
             [MessageCodes.Common.Success] = "İşlem başarıyla tamamlandı.",
+            [MessageCodes.Common.Updated] = "{0} başarıyla güncellendi.",
             [MessageCodes.Common.Unauthorized] = "Bu işlem için yetkiniz bulunmamaktadır.",
             [MessageCodes.Common.TokenExpired] = "Oturum süreniz dolmuştur. Lütfen tekrar giriş yapın.",
             [MessageCodes.Common.InvalidToken] = "Geçersiz token.",
@@ -35,6 +36,7 @@ public static class Messages
             [MessageCodes.Common.AccountLocked] = "Your account has been locked. Please try again later.",
             [MessageCodes.Common.Error] = "An error occurred. Please try again later.",
             [MessageCodes.Common.Success] = "Operation completed successfully.",
+            [MessageCodes.Common.Updated] = "{0} has been successfully updated.",
             [MessageCodes.Common.Unauthorized] = "You are not authorized to perform this action.",
             [MessageCodes.Common.TokenExpired] = "Your session has expired. Please login again.",
             [MessageCodes.Common.InvalidToken] = "Invalid token.",
@@ -52,8 +54,9 @@ public static class Messages
     /// <summary>
     /// Belirtilen kod ve dil için mesajı döndürür.
     /// </summary>
-    public static string GetMessage(string code, string language = "tr", params object[] parameters)
+    public static string GetMessage(string code, params object[] parameters)
     {
+        string language = "tr";
         // todo: Burada daha sonra login olan kullanıcının dil bilgisine göre düzenleme yapılabilir.
         var message = _translations[language][code];
         return parameters != null && parameters.Length > 0

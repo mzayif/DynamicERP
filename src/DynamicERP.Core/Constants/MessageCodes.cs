@@ -33,6 +33,10 @@ public static class MessageCodes
         /// </summary>
         public const string Success = "SUCCESS";
         /// <summary>
+        /// {0} başarıyla güncellendi.
+        /// </summary>
+        public const string Updated = "RECORD_UPDATED";
+        /// <summary>
         /// Bu işlem için yetkiniz bulunmamaktadır.
         /// </summary>
         public const string Unauthorized = "UNAUTHORIZED";

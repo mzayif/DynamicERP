@@ -1,11 +1,16 @@
+using FluentValidation;
+using DynamicERP.Application.Features.Users.Commands;
 using DynamicERP.API;
 using DynamicERP.Core.Extensions;
 using DynamicERP.Core.Middleware;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
+
 builder.Services.AddDynamicErpServices(builder.Configuration);
 builder.Services.AddLoggerService();
 
