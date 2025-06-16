@@ -1,18 +1,20 @@
+using DynamicERP.Core.Constants;
+
 namespace DynamicERP.Core.Results;
 
-public class PagedResult<T> : DataResult<List<T>>
+public class PagedResult<T> : DataResult<T>
 {
     public int PageNumber { get; }
     public int PageSize { get; }
-    public int TotalPages { get; }
     public int TotalRecords { get; }
+    public int TotalPages => (int)Math.Ceiling(TotalRecords / (double)PageSize);
     public bool HasPreviousPage => PageNumber > 1;
     public bool HasNextPage => PageNumber < TotalPages;
 
     protected PagedResult(
         bool isSuccess,
         string message,
-        List<T>? data,
+        T? data,
         int pageNumber,
         int pageSize,
         int totalRecords,
@@ -22,17 +24,16 @@ public class PagedResult<T> : DataResult<List<T>>
         PageNumber = pageNumber;
         PageSize = pageSize;
         TotalRecords = totalRecords;
-        TotalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
     }
 
     public static PagedResult<T> Success(
-        List<T> data,
+        T data,
         int pageNumber,
         int pageSize,
         int totalRecords,
-        string message = "İşlem başarılı")
+        string message = null)
     {
-        return new PagedResult<T>(true, message, data, pageNumber, pageSize, totalRecords);
+        return new PagedResult<T>(true, message ?? Messages.GetMessage(MessageCodes.Common.Success), data, pageNumber, pageSize, totalRecords);
     }
 
     public static PagedResult<T> Failure(

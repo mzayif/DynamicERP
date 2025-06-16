@@ -1,3 +1,5 @@
+using DynamicERP.Core.Constants;
+
 namespace DynamicERP.Core.Results;
 
 public class DataResult<T> : Result
@@ -10,9 +12,9 @@ public class DataResult<T> : Result
         Data = data;
     }
 
-    public static DataResult<T> Success(T data, string message = "İşlem başarılı")
+    public static DataResult<T> Success(T data, string? message = null)
     {
-        return new DataResult<T>(true, message, data);
+        return new DataResult<T>(true, message ?? Messages.GetMessage(MessageCodes.Common.Success), data);
     }
 
     public static DataResult<T> Failure(string message, List<string>? errors = null)
