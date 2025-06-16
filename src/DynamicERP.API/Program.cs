@@ -1,11 +1,13 @@
 using DynamicERP.API;
-
+using DynamicERP.Core.Extensions;
+using DynamicERP.Core.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddDynamicErpServices(builder.Configuration);
+builder.Services.AddLoggerService();
 
 var app = builder.Build();
 
@@ -21,6 +23,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
 app.UseAuthorization();
 
