@@ -1,75 +1,95 @@
-# DynamicERP Projesi Geliştirme Planı
+# DynamicERP Roadmap
 
-## 1. Validation İyileştirmeleri
-- [ ] FluentValidation kütüphanesinin eklenmesi
-- [ ] Custom validation attribute'larının oluşturulması
-- [ ] Cross-field validation kurallarının eklenmesi
-- [ ] Validation mesajlarının lokalizasyonu
-- [ ] Validation hata yönetimi middleware'i
+## 1. Tamamlanan İşler ✅
+- [x] Proje yapısının oluşturulması
+- [x] Core katmanının temel yapılandırması
+- [x] Result yapısının oluşturulması
+- [x] Message yapısının oluşturulması
+- [x] User entity'sinin oluşturulması
+- [x] User repository interface'inin oluşturulması
+- [x] User service interface'inin oluşturulması
+- [x] User DTO'larının oluşturulması
+- [x] Mapster entegrasyonu
+- [x] User service implementasyonu
 
-## 2. Logging Mekanizması
-- [ ] Serilog entegrasyonu
-- [ ] Structured logging implementasyonu
-- [ ] Log seviyelerinin yapılandırılması
-- [ ] Log rotasyonu ve arşivleme
-- [ ] Performance logging
-- [ ] Audit logging
+## 2. Devam Eden İşler 🚧
+- [ ] User repository implementasyonu
+- [ ] User controller'ın oluşturulması
+- [ ] User CQRS handler'larının oluşturulması
+- [ ] User validation kurallarının oluşturulması
 
-## 3. Caching Stratejisi
-- [ ] In-memory caching implementasyonu
-- [ ] Distributed caching (Redis) entegrasyonu
-- [ ] Cache invalidation stratejisi
-- [ ] Cache key yönetimi
-- [ ] Cache performance monitoring
-
-## 4. API Documentation
-- [ ] Swagger/OpenAPI entegrasyonu
-- [ ] API versiyonlama
-- [ ] API dokümantasyonu
-- [ ] Postman collection'ları
-- [ ] API test senaryoları
-
-## 5. Security İyileştirmeleri
+## 3. Sıradaki İşler 📋
+### 3.1 Authentication & Authorization
 - [ ] JWT authentication implementasyonu
-- [ ] Role-based authorization
-- [ ] Policy-based authorization
-- [ ] API key authentication
+- [ ] Role-based authorization implementasyonu
+- [ ] Password hashing implementasyonu
+- [ ] Refresh token mekanizması
+- [ ] External provider entegrasyonu (Google, Microsoft)
+
+### 3.2 User Management
+- [ ] User profil yönetimi
+- [ ] User şifre değiştirme
+- [ ] User e-posta doğrulama
+- [ ] User telefon doğrulama
+- [ ] User profil resmi yükleme
+
+### 3.3 Tenant Management
+- [ ] Tenant entity'sinin oluşturulması
+- [ ] Tenant repository implementasyonu
+- [ ] Tenant service implementasyonu
+- [ ] Tenant controller'ın oluşturulması
+- [ ] Multi-tenant yapılandırması
+
+### 3.4 External Provider Management
+- [ ] External provider entity'sinin oluşturulması
+- [ ] External provider repository implementasyonu
+- [ ] External provider service implementasyonu
+- [ ] External provider controller'ın oluşturulması
+
+### 3.5 Infrastructure
+- [ ] DbContext implementasyonu
+- [ ] Migration'ların oluşturulması
+- [ ] Unit of Work pattern implementasyonu
+- [ ] Caching mekanizması
+- [ ] Logging mekanizması
+
+### 3.6 API
+- [ ] Swagger konfigürasyonu
+- [ ] API versiyonlama
 - [ ] Rate limiting
-- [ ] CORS politikaları
-- [ ] Security headers
+- [ ] API documentation
+- [ ] Health check endpoints
 
-## 6. Testing Altyapısı
-- [ ] Unit test projelerinin oluşturulması
+### 3.7 Testing
+- [ ] Unit test altyapısı
 - [ ] Integration test altyapısı
-- [ ] E2E test senaryoları
+- [ ] E2E test altyapısı
 - [ ] Test coverage raporlama
-- [ ] Mock ve stub implementasyonları
-- [ ] Test data yönetimi
 
-## 7. Monitoring ve Observability
-- [ ] Health check endpoint'leri
-- [ ] Application Insights entegrasyonu
-- [ ] Performance monitoring
-- [ ] Error tracking
-- [ ] Metrics collection
-- [ ] Alerting mekanizması
+### 3.8 DevOps
+- [ ] CI/CD pipeline
+- [ ] Docker containerization
+- [ ] Kubernetes deployment
+- [ ] Monitoring ve logging
+- [ ] Backup ve recovery
 
-## Öncelik Sırası
-1. Validation İyileştirmeleri
-2. Security İyileştirmeleri
-3. Logging Mekanizması
-4. Testing Altyapısı
-5. API Documentation
-6. Caching Stratejisi
-7. Monitoring ve Observability
+## 4. Gelecek Özellikler 🔮
+- [ ] Real-time bildirimler
+- [ ] WebSocket entegrasyonu
+- [ ] GraphQL API
+- [ ] Microservice mimarisi
+- [ ] Event-driven mimari
 
-## Tahmini Süreler
-- Validation İyileştirmeleri: 1 hafta
-- Security İyileştirmeleri: 2 hafta
-- Logging Mekanizması: 1 hafta
-- Testing Altyapısı: 2 hafta
-- API Documentation: 1 hafta
-- Caching Stratejisi: 1 hafta
-- Monitoring ve Observability: 1 hafta
+## 5. Optimizasyonlar ⚡
+- [ ] Performance optimizasyonları
+- [ ] Database optimizasyonları
+- [ ] Caching stratejileri
+- [ ] Query optimizasyonları
+- [ ] Resource kullanımı optimizasyonları
 
-Toplam Tahmini Süre: 9 hafta 
+## 6. Dokümantasyon 📚
+- [ ] API dokümantasyonu
+- [ ] Deployment dokümantasyonu
+- [ ] Development guide
+- [ ] Architecture dokümantasyonu
+- [ ] Troubleshooting guide 
