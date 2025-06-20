@@ -1,14 +1,17 @@
 using DynamicERP.Application.Services;
+using DynamicERP.Application.Common.Behaviors;
 using DynamicERP.Core.Interfaces.Services;
 using DynamicERP.Domain.Interfaces;
 using DynamicERP.Infrastructure.Data;
 using DynamicERP.Infrastructure.Repositories;
 using Mapster;
 using MapsterMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using FluentValidation;
 
 namespace DynamicERP.API;
 
@@ -16,6 +19,12 @@ public static class ServiceRegistration
 {
     public static IServiceCollection AddDynamicErpServices(this IServiceCollection services, IConfiguration configuration)
     {
+        // Add MediatR
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServiceRegistration).Assembly));
+        
+        // Add Validation Behavior
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
         // Add DbContext
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));

@@ -67,6 +67,13 @@ public class UserService : IUserService
         return DataResult<IEnumerable<UserResponseModel>>.Success(response);
     }
 
+    public async Task<DataResult<IEnumerable<UserResponseModel>>> GetPageAbleAllUsersAsync(BaseQuery query, CancellationToken cancellationToken)
+    {
+        var users = await _userRepository.GetAll().Skip(query.Page * query.PageSize).Take(query.PageSize).ToListAsync(cancellationToken);
+        var response = users.Adapt<IEnumerable<UserResponseModel>>();
+        return DataResult<IEnumerable<UserResponseModel>>.Success(response);
+    }
+
     public async Task<Result> CreateUserAsync(CreateUserRequest request, string? password, CancellationToken cancellationToken = default)
     {
         if (await _userRepository.ExistsByEmailAsync(request.Email, cancellationToken))
@@ -163,4 +170,5 @@ public class UserService : IUserService
         await _userRepository.UpdateAsync(user, cancellationToken);
         return Result.Success(Messages.GetMessage(MessageCodes.Common.Success));
     }
+
 }

@@ -26,7 +26,13 @@ public static class Messages
             [MessageCodes.Validation.InvalidValue] = "{0} alanı için geçersiz değer.",
             [MessageCodes.Validation.InvalidDate] = "{0} alanı için geçersiz tarih.",
             [MessageCodes.Validation.InvalidEmail] = "Geçersiz e-posta adresi.",
-            [MessageCodes.Validation.InvalidPhone] = "Geçersiz telefon numarası."
+            [MessageCodes.Validation.InvalidPhone] = "Geçersiz telefon numarası.",
+            [MessageCodes.Validation.GreaterThan] = "{0} alanı {1} değerinden büyük olmalıdır.",
+            [MessageCodes.Validation.LessThanOrEqualTo] = "{0} alanı {1} değerinden küçük veya eşit olmalıdır.",
+            [MessageCodes.Validation.LessThan] = "{0} alanı {1} değerinden küçük olmalıdır.",
+            [MessageCodes.Validation.GreaterThanOrEqualTo] = "{0} alanı {1} değerinden büyük veya eşit olmalıdır.",
+            [MessageCodes.Validation.Unique] = "{0} alanı benzersiz olmalıdır.",
+            [MessageCodes.Validation.InvalidPassword] = "{0} alanı geçersiz şifre formatında."
         },
         ["en"] = new()
         {
@@ -47,7 +53,13 @@ public static class Messages
             [MessageCodes.Validation.InvalidValue] = "Invalid value for {0} field.",
             [MessageCodes.Validation.InvalidDate] = "Invalid date for {0} field.",
             [MessageCodes.Validation.InvalidEmail] = "Invalid email address.",
-            [MessageCodes.Validation.InvalidPhone] = "Invalid phone number."
+            [MessageCodes.Validation.InvalidPhone] = "Invalid phone number.",
+            [MessageCodes.Validation.GreaterThan] = "{0} field must be greater than {1}.",
+            [MessageCodes.Validation.LessThanOrEqualTo] = "{0} field must be less than or equal to {1}.",
+            [MessageCodes.Validation.LessThan] = "{0} field must be less than {1}.",
+            [MessageCodes.Validation.GreaterThanOrEqualTo] = "{0} field must be greater than or equal to {1}.",
+            [MessageCodes.Validation.Unique] = "{0} field must be unique.",
+            [MessageCodes.Validation.InvalidPassword] = "{0} field has invalid password format."
         }
     };
 

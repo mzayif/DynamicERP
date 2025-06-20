@@ -8,10 +8,10 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\Repositories\" />
-    <Folder Include="RequestModels\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
     <PackageReference Include="Serilog" Version="4.3.0" />

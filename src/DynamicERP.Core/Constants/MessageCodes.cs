@@ -84,5 +84,29 @@ public static class MessageCodes
         /// Geçersiz telefon numarası.
         /// </summary>
         public const string InvalidPhone = "VALIDATION_INVALID_PHONE";
+        /// <summary>
+        /// {0} alanı {1} değerinden büyük olmalıdır.
+        /// </summary>
+        public const string GreaterThan = "VALIDATION_GREATER_THAN";
+        /// <summary>
+        /// {0} alanı {1} değerinden küçük veya eşit olmalıdır.
+        /// </summary>
+        public const string LessThanOrEqualTo = "VALIDATION_LESS_THAN_OR_EQUAL_TO";
+        /// <summary>
+        /// {0} alanı {1} değerinden küçük olmalıdır.
+        /// </summary>
+        public const string LessThan = "VALIDATION_LESS_THAN";
+        /// <summary>
+        /// {0} alanı {1} değerinden büyük veya eşit olmalıdır.
+        /// </summary>
+        public const string GreaterThanOrEqualTo = "VALIDATION_GREATER_THAN_OR_EQUAL_TO";
+        /// <summary>
+        /// {0} alanı benzersiz olmalıdır.
+        /// </summary>
+        public const string Unique = "VALIDATION_UNIQUE";
+        /// <summary>
+        /// {0} alanı geçersiz şifre formatında.
+        /// </summary>
+        public const string InvalidPassword = "VALIDATION_INVALID_PASSWORD";
     }
 } 

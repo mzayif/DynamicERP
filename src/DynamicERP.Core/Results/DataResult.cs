@@ -1,4 +1,5 @@
 using DynamicERP.Core.Constants;
+using DynamicERP.Core.ResponseModels;
 
 namespace DynamicERP.Core.Results;
 
@@ -12,7 +13,7 @@ public class DataResult<T> : Result
         Data = data;
     }
 
-    public static DataResult<T> Success(T data, string? message = null)
+    public static DataResult<T> Success(T? data, string? message = null)
     {
         return new DataResult<T>(true, message ?? Messages.GetMessage(MessageCodes.Common.Success), data);
     }
