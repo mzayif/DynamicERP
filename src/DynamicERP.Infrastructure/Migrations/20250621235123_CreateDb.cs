@@ -117,11 +117,54 @@ namespace DynamicERP.Infrastructure.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RefreshTokens",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    ExpiresAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RevokedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RevokedBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    ReplacedByToken = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    ReasonRevoked = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshTokens_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ExternalProviders_Code",
                 table: "ExternalProviders",
                 column: "Code",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_Token",
+                table: "RefreshTokens",
+                column: "Token",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_UserId",
+                table: "RefreshTokens",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tenants_Code",
@@ -153,42 +196,44 @@ namespace DynamicERP.Infrastructure.Migrations
                 column: "Username",
                 unique: true);
 
+
+
             // Seed Data - Default Tenant
             migrationBuilder.InsertData(
                 table: "Tenants",
                 columns: new[] { "Id", "Name", "Code", "Description", "Email", "Phone", "Address", "TimeZone", "Language", "Currency", "CreatedAt", "IsDeleted", "IsActive" },
-                values: new object[] { 
-                    Guid.Parse("11111111-1111-1111-1111-111111111111"), 
-                    "Test Company", 
-                    "TEST", 
+                values: new object[] {
+                    Guid.Parse("11111111-1111-1111-1111-111111111111"),
+                    "Test Company",
+                    "TEST",
                     "Default test tenant",
-                    "test@testcompany.com", 
-                    "+905551234567", 
-                    "TEST Address", 
-                    "Europe/Istanbul", 
-                    "tr-TR", 
-                    "TRY", 
-                    DateTime.UtcNow, 
-                    false, 
-                    true 
+                    "test@testcompany.com",
+                    "+905551234567",
+                    "TEST Address",
+                    "Europe/Istanbul",
+                    "tr-TR",
+                    "TRY",
+                    DateTime.UtcNow,
+                    false,
+                    true
                 });
 
             // Seed Data - Default Test User
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "TenantId", "Username", "Email", "PasswordHash", "FirstName", "LastName", "PhoneNumber", "CreatedAt", "IsDeleted", "IsActive" },
-                values: new object[] { 
-                    Guid.Parse("22222222-2222-2222-2222-222222222222"), 
-                    Guid.Parse("11111111-1111-1111-1111-111111111111"), 
-                    "test", 
-                    "test@testcompany.com", 
+                values: new object[] {
+                    Guid.Parse("22222222-2222-2222-2222-222222222222"),
+                    Guid.Parse("11111111-1111-1111-1111-111111111111"),
+                    "test",
+                    "test@testcompany.com",
                     "$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj4J/HS.iK2", // Test123! hash'lenmiş
-                    "Test", 
-                    "User", 
-                    "+905551234567", 
-                    DateTime.UtcNow, 
-                    false, 
-                    true 
+                    "Test",
+                    "User",
+                    "+905551234567",
+                    DateTime.UtcNow,
+                    false,
+                    true
                 });
         }
 
@@ -197,6 +242,9 @@ namespace DynamicERP.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ExternalProviders");
+
+            migrationBuilder.DropTable(
+                name: "RefreshTokens");
 
             migrationBuilder.DropTable(
                 name: "Users");
