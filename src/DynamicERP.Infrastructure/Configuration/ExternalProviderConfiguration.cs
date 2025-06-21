@@ -3,7 +3,7 @@ using DynamicERP.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DynamicERP.Infrastructure.Data.Configuration;
+namespace DynamicERP.Infrastructure.Configuration;
 
 public class ExternalProviderConfiguration : IEntityTypeConfiguration<ExternalProvider>
 {
@@ -55,4 +55,4 @@ public class ExternalProviderConfiguration : IEntityTypeConfiguration<ExternalPr
         builder.HasIndex(e => e.Code)
             .IsUnique();
     }
-} 
+}

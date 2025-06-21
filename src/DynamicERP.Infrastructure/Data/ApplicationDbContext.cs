@@ -1,6 +1,6 @@
 using DynamicERP.Domain.Entities;
 using DynamicERP.Domain.Entities.BaseClasses;
-using DynamicERP.Infrastructure.Data.Configuration;
+using DynamicERP.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace DynamicERP.Infrastructure.Data;

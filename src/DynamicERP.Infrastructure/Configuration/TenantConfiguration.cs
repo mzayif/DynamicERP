@@ -2,7 +2,7 @@ using DynamicERP.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DynamicERP.Infrastructure.Data.Configuration;
+namespace DynamicERP.Infrastructure.Configuration;
 
 public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
 {
@@ -63,4 +63,4 @@ public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
         builder.HasIndex(e => e.Code)
             .IsUnique();
     }
-} 
+}

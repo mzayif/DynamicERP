@@ -2,14 +2,14 @@ using DynamicERP.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DynamicERP.Infrastructure.Data.Configuration;
+namespace DynamicERP.Infrastructure.Configuration;
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasKey(e => e.Id);
-        
+
         builder.Property(e => e.Username)
             .IsRequired()
             .HasMaxLength(50);
@@ -53,4 +53,4 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey(e => e.TenantId)
             .OnDelete(DeleteBehavior.Restrict);
     }
-} 
+}
