@@ -33,6 +33,30 @@ public static class ServiceRegistration
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
         var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
 
+        // Add CORS Settings
+        services.Configure<CorsSettings>(configuration.GetSection("CorsSettings"));
+        var corsSettings = configuration.GetSection("CorsSettings").Get<CorsSettings>();
+
+        // Add CORS
+        if (corsSettings?.AllowedOrigins?.Length > 0)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.WithOrigins(corsSettings.AllowedOrigins)
+                          .WithMethods(corsSettings.AllowedMethods)
+                          .WithHeaders(corsSettings.AllowedHeaders)
+                          .SetIsOriginAllowedToAllowWildcardSubdomains();
+                    
+                    if (corsSettings.AllowCredentials)
+                        policy.AllowCredentials();
+                    
+                    policy.SetPreflightMaxAge(TimeSpan.FromSeconds(corsSettings.MaxAge));
+                });
+            });
+        }
+
         // Add JWT Authentication
         services.AddAuthentication(options =>
         {
@@ -85,6 +109,7 @@ public static class ServiceRegistration
         // Add Services
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IJwtService, JwtService>();
+        services.AddScoped<IPasswordService, PasswordService>();
      
         // Swagger
         services.AddEndpointsApiExplorer();

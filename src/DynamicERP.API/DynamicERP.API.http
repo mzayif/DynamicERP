@@ -33,9 +33,8 @@ POST {{DynamicERP.API_HostAddress_HTTPS}}/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "test1@example.com",
-  "password": "Test123!",
-  "rememberMe": true
+  "email": "test@testcompany.com",
+  "password": "Test123!"
 }
 
 ###

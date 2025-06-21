@@ -77,8 +77,9 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, DataResult<Logi
         var loginResponse = new LoginResponse
         {
             AccessToken = accessToken,
-            RefreshToken = refreshToken,
-            ExpiresInMinutes = 60, // JWT ayarlarından alınabilir
+            RefreshToken = refreshToken ?? string.Empty,
+            ExpiresAt = DateTime.UtcNow.AddMinutes(30), // 30 dakika
+            TokenType = "Bearer",
             User = userResult.Data
         };
 

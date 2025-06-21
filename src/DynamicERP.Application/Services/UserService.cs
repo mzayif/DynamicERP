@@ -23,11 +23,13 @@ public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
+    private readonly IPasswordService _passwordService;
 
-    public UserService(IUserRepository userRepository, IMapper mapper)
+    public UserService(IUserRepository userRepository, IMapper mapper, IPasswordService passwordService)
     {
         _userRepository = userRepository;
         _mapper = mapper;
+        _passwordService = passwordService;
     }
 
     public async Task<DataResult<UserResponseModel>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -82,10 +84,17 @@ public class UserService : IUserService
         if (await _userRepository.ExistsByUsernameAsync(request.Username))
             return Result.Failure(Messages.GetMessage(MessageCodes.Common.AlreadyExists, "Kullanıcı"));
 
-        var user = request.Adapt<User>();
-        // TODO: Password hash işlemi eklenecek
-        user.PasswordHash = password;
+        // Şifre güvenlik kontrolü
+        if (!string.IsNullOrEmpty(password))
+        {
+            var (isValid, errorMessage) = _passwordService.ValidatePasswordStrength(password);
+            if (!isValid)
+                return Result.Failure(errorMessage);
+        }
 
+        var user = request.Adapt<User>();
+        user.PasswordHash = _passwordService.HashPassword(password);
+        
         await _userRepository.AddAsync(user, cancellationToken);
         return Result.Success();
     }
@@ -146,7 +155,12 @@ public class UserService : IUserService
         if (user == null)
             return Result.Failure(Messages.GetMessage(MessageCodes.Common.NotFound, "Kullanıcı"));
 
-        // TODO: Password doğrulama işlemi eklenecek
+        // Şifre doğrulama
+        if (string.IsNullOrEmpty(user.PasswordHash))
+            return Result.Failure("Bu kullanıcı için şifre doğrulaması yapılamaz");
+
+        if (!_passwordService.VerifyPassword(password, user.PasswordHash))
+            return Result.Failure("Geçersiz şifre");
 
         return Result.Success(Messages.GetMessage(MessageCodes.Common.Success));
     }

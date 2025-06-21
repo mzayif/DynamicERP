@@ -3,6 +3,7 @@ using DynamicERP.Application.Features.Users.Commands;
 using DynamicERP.API;
 using DynamicERP.Core.Extensions;
 using DynamicERP.Core.Middleware;
+using DynamicERP.Core.Models;
 using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Add CORS middleware
+var corsSettings = builder.Configuration.GetSection("CorsSettings").Get<CorsSettings>();
+if (corsSettings?.AllowedOrigins?.Length > 0)
+{
+    app.UseCors("CorsPolicy");
+}
 
 app.UseMiddleware<RequestResponseLoggingMiddleware>();
 

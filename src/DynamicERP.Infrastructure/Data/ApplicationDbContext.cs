@@ -15,6 +15,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Tenant> Tenants { get; set; } = null!;
     public DbSet<ExternalProvider> ExternalProviders { get; set; } = null!;
+    public DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,6 +25,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new TenantConfiguration());
         modelBuilder.ApplyConfiguration(new ExternalProviderConfiguration());
+        modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

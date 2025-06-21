@@ -180,9 +180,9 @@ namespace DynamicERP.Infrastructure.Migrations
                 values: new object[] { 
                     Guid.Parse("22222222-2222-2222-2222-222222222222"), 
                     Guid.Parse("11111111-1111-1111-1111-111111111111"), 
-                    "test",
+                    "test", 
                     "test@testcompany.com", 
-                    "Test123!", 
+                    "$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj4J/HS.iK2", // Test123! hash'lenmiş
                     "Test", 
                     "User", 
                     "+905551234567", 
