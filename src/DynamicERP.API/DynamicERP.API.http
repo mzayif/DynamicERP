@@ -1,6 +1,51 @@
 @DynamicERP.API_HostAddress = http://localhost:5245
+@DynamicERP.API_HostAddress_HTTPS = https://localhost:7172
 
-GET {{DynamicERP.API_HostAddress}}/weatherforecast/
-Accept: application/json
+### Test 1: Login with Default Admin (Auto-created by Migration)
+POST {{DynamicERP.API_HostAddress_HTTPS}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@admincompany.com",
+  "password": "Admin123!",
+  "rememberMe": true
+}
 
 ###
+
+### Test 2: Create New User
+POST {{DynamicERP.API_HostAddress_HTTPS}}/api/users
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test1@example.com",
+  "password": "Test123!",
+  "firstName": "Test1",
+  "lastName": "User",
+  "phoneNumber": "+905551234567"
+}
+
+###
+
+### Test 3: Login with New User
+POST {{DynamicERP.API_HostAddress_HTTPS}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test1@example.com",
+  "password": "Test123!",
+  "rememberMe": true
+}
+
+###
+
+### Test 4: Get Current User (requires authentication)
+GET {{DynamicERP.API_HostAddress_HTTPS}}/api/auth/me
+Authorization: Bearer {{auth_token}}
+
+###
+
+### Test 5: Test Protected Endpoint
+GET {{DynamicERP.API_HostAddress_HTTPS}}/api/auth/test
+Authorization: Bearer {{auth_token}}
