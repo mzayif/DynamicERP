@@ -1,111 +1,113 @@
-# DynamicERP Projesi
+# DynamicERP API
 
-## Proje Yapısı
+Modern, güvenli ve ölçeklenebilir ERP sistemi API'si.
 
-### 1. Entity Yapısı
-- **BaseEntity**: Temel entity özellikleri
-  - Id (Guid)
-  - CreatedDate
-  - CreatedBy
-  - UpdatedDate
-  - UpdatedBy
+## 🚀 Özellikler
 
-- **BaseFullEntity**: BaseEntity'den türeyen ve IsActive özelliği eklenmiş entity
-  - Tüm BaseEntity özellikleri
-  - IsActive (bool)
+### 🔐 Güvenlik
+- **JWT Token Authentication**
+- **Password Hashing (BCrypt)** - Güvenli şifre hash'leme
+- **Password Strength Validation** - Güçlü şifre zorunluluğu
+- **CORS Protection** - Cross-origin güvenliği
+- **Global Exception Handling** - Merkezi hata yönetimi
 
-- **Entity'ler**:
-  - User
-  - Tenant
-  - ExternalProvider
+### 🏗️ Mimari
+- **Clean Architecture** - Temiz ve sürdürülebilir kod yapısı
+- **CQRS Pattern** - Command Query Responsibility Segregation
+- **Repository Pattern** - Veri erişim katmanı
+- **Unit of Work** - Transaction yönetimi
 
-### 2. Repository Pattern
-- **IGenericRepository<TEntity, TKey>**
-  - GetAllAsync()
-  - GetByIdAsync()
-  - AddAsync()
-  - UpdateAsync()
-  - DeleteAsync()
-  - ExistsAsync()
-  - FindAsync()
-  - FirstOrDefaultAsync()
-  - CountAsync()
-  - ActivateAsync()
-  - CancelAsync()
+### 📊 Veritabanı
+- **Entity Framework Core** - Code-First yaklaşımı
+- **SQL Server** - Güçlü veritabanı desteği
+- **Migration Sistemi** - Veritabanı versiyon yönetimi
+- **Multi-Tenant Ready** - Çoklu müşteri desteği
 
-- **Özel Repository'ler**:
-  - IUserRepository
-  - ITenantRepository
-  - IExternalProviderRepository
+### 🔧 Teknolojiler
+- **.NET 9** - En güncel .NET framework
+- **MediatR** - Mediator pattern implementasyonu
+- **FluentValidation** - Güçlü validation sistemi
+- **Mapster** - Hızlı object mapping
+- **Swagger/OpenAPI** - API dokümantasyonu
 
-### 3. Service Layer
-- **Servis Interface'leri**:
-  - IUserService
-  - ITenantService
-  - IExternalProviderService
+## 🛠️ Kurulum
 
-- **Servis Implementasyonları**:
-  - UserService
-  - TenantService
-  - ExternalProviderService
+### Gereksinimler
+- .NET 9 SDK
+- SQL Server 2019+
+- Visual Studio 2022 veya VS Code
 
-### 4. Entity Configuration
-- **Configuration Sınıfları**:
-  - UserConfiguration
-  - TenantConfiguration
-  - ExternalProviderConfiguration
+### Adımlar
+1. Repository'yi klonlayın
+2. Connection string'i `appsettings.json`'da güncelleyin
+3. Migration'ları çalıştırın: `dotnet ef database update`
+4. API'yi başlatın: `dotnet run`
 
-- **Validation Kuralları**:
-  - ValidationRules.cs ile merkezi validation
-  - Entity bazlı özel kurallar
+## 🔑 Varsayılan Kullanıcı
 
-### 5. Dependency Injection
-- Repository ve Service'ler için DI kayıtları
-- Scoped lifetime kullanımı
-- Program.cs'de servis kayıtları
+```
+Email: test@testcompany.com
+Şifre: Test123!
+```
 
-### 6. Validation Rules
-- Merkezi validation kuralları
-- Entity bazlı özel kurallar
-- Configuration'larda kullanım
+## 📝 API Endpoints
 
-### 7. CQRS Pattern
-- **Command Interface'leri**:
-  - ICommand
-  - ICommand<TResult>
+### Authentication
+- `POST /api/auth/login` - Kullanıcı girişi
+- `POST /api/auth/refresh-token` - Token yenileme
+- `POST /api/auth/revoke-token` - Token iptal etme
 
-- **Query Interface'leri**:
-  - IQuery<TResult>
+### Users
+- `GET /api/users` - Tüm kullanıcıları listele
+- `GET /api/users/{id}` - Kullanıcı detayı
+- `POST /api/users` - Yeni kullanıcı oluştur
+- `PUT /api/users/{id}` - Kullanıcı güncelle
+- `DELETE /api/users/{id}` - Kullanıcı sil
 
-- **Handler Interface'leri**:
-  - ICommandHandler<TCommand>
-  - ICommandHandler<TCommand, TResult>
-  - IQueryHandler<TQuery, TResult>
+## 🔒 Güvenlik Özellikleri
 
-### 8. Unit of Work
-- IUnitOfWork interface'i
-- UnitOfWork implementasyonu
-- Transaction yönetimi
+### Password Hashing
+- BCrypt algoritması kullanılıyor
+- Work factor: 12 (güvenlik seviyesi)
+- Salt otomatik olarak ekleniyor
 
-### 9. Proje Yapısı
-- Clean Architecture
-- Katmanlı mimari
-- Interface ve implementasyon ayrımı
+### Password Validation
+- Minimum 6 karakter
+- En az 1 büyük harf
+- En az 1 küçük harf
+- En az 1 rakam
+- En az 1 özel karakter
+- Yaygın şifre kontrolü
 
-### 10. Temizlik ve Düzenleme
-- Eski interface'lerin kaldırılması
-- Yeni yapıya geçiş
-- Kod organizasyonu
+### JWT Token
+- 30 dakika geçerlilik süresi
+- Secure token validation
+- Token rotation desteği
 
-## Teknolojiler
-- .NET 8
-- Entity Framework Core
-- SQL Server
-- CQRS Pattern
-- Repository Pattern
-- Unit of Work Pattern
+## 🌍 Ortam Konfigürasyonu
 
-## Katmanlar
-1. **Core**: Entity'ler, Interface'ler, Validation Rules
-2. **Infrastructure**: Repository'ler, Service'ler, Configuration'lar
-3. **API**: Controller'lar, Middleware'ler 
+### Development
+- Detaylı hata mesajları
+- CORS: Tüm origin'lere izin
+- Logging: Debug seviyesi
+
+### Production
+- Güvenli hata mesajları
+- CORS: Sadece belirli domain'lere izin
+- Logging: Error seviyesi
+
+## 📚 Dokümantasyon
+
+- [Coding Standards](CODING_STANDARDS.md)
+- [RoadMap](ROADMAP.md)
+
+## 🤝 Katkıda Bulunma
+
+1. Fork yapın
+2. Feature branch oluşturun
+3. Değişikliklerinizi commit edin
+4. Pull request gönderin
+
+## 📄 Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır. 

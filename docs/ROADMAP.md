@@ -1,170 +1,146 @@
-# DynamicERP Roadmap
+# DynamicERP Projesi RoadMap
 
-## 1. Tamamlanan İşler ✅
-- [x] Proje yapısının oluşturulması
-- [x] Core katmanının temel yapılandırması
-- [x] Result yapısının oluşturulması
-- [x] Message yapısının oluşturulması
-- [x] User entity'sinin oluşturulması
-- [x] User repository interface'inin oluşturulması
-- [x] User service interface'inin oluşturulması
-- [x] User DTO'larının oluşturulması
-- [x] Mapster entegrasyonu
-- [x] User service implementasyonu
-- [x] **Validation Sistemi**
-  - [x] FluentValidation entegrasyonu
-  - [x] ValidationBehavior (MediatR pipeline)
-  - [x] Custom validation attributes (UniqueEmail, UniqueUsername, ValidPassword)
-  - [x] Validation extensions
-  - [x] Merkezi validation mesaj kodları
-  - [x] Query validators (GetUserById, GetAllUsers)
-- [x] **BaseQuery Sistemi**
-  - [x] BaseQuery modeli (Core katmanında)
-  - [x] BaseQueryValidator (Core katmanında)
-  - [x] Pagination, search, sort özellikleri
-  - [x] GetAllUsersQuery BaseQuery'den türetildi
-- [x] **JWT Authentication & Authorization**
-  - [x] JWT paketleri eklendi
-  - [x] JWT ayarları konfigürasyonu
-  - [x] JwtService ve IJwtService
-  - [x] Login request/response modelleri
-  - [x] LoginCommand ve LoginCommandHandler
-  - [x] AuthController (login, test, me endpoints)
-  - [x] Authentication/Authorization middleware'leri
-  - [x] Swagger JWT desteği
-- [x] **Crosscutting Concerns**
-  - [x] Logging sistemi (Serilog)
-  - [x] Exception handling middleware
-  - [x] Request/Response logging middleware
-- [x] **Ortam Yapılandırması**
-  - [x] Development, Test, Production ayar dosyaları
-  - [x] Ortam bazlı JWT ayarları
-  - [x] Ortam bazlı logging seviyeleri
-  - [x] Launch settings profilleri
-- [x] **Veritabanı Yapılandırması**
-  - [x] Entity Framework Core entegrasyonu
-  - [x] Migration sistemi
-  - [x] Seed data (default tenant ve admin kullanıcısı)
-  - [x] Entity konfigürasyonları
-- [x] **API Endpoints**
-  - [x] UserController (create, update endpoints)
-  - [x] AuthController (login, test, me endpoints)
-  - [x] HTTP test dosyası
-- [x] **CORS Politikaları**
-  - [x] Ortam bazlı CORS ayarları
-  - [x] Policy-based CORS konfigürasyonu
-  - [x] Development, Test, Production CORS ayarları
-  - [x] Credential desteği
+## ✅ Tamamlanan İşler
 
-## 2. Devam Eden İşler 🚧
-- [ ] Password hashing implementasyonu
-- [ ] Refresh token mekanizması
-- [ ] Role-based authorization
+### Temel Yapı
+- [x] Clean Architecture yapısı kuruldu
+- [x] CQRS pattern implementasyonu
+- [x] MediatR entegrasyonu
+- [x] FluentValidation entegrasyonu
+- [x] Mapster AutoMapper entegrasyonu
+- [x] Global Exception Handling
+- [x] Request/Response Logging Middleware
 
-## 3. Sıradaki İşler 📋
-### 3.1 Crosscutting Concerns (Devam)
-- [ ] **Caching Sistemi**
-  - [ ] Memory caching
-  - [ ] Redis caching
-  - [ ] Distributed caching
-  - [ ] Cache invalidation stratejisi
-- [ ] **Rate Limiting**
-  - [ ] API rate limiting
-  - [ ] User-based rate limiting
-  - [ ] IP-based rate limiting
-- [ ] **Health Checks**
-  - [ ] Application health monitoring
-  - [ ] Database health checks
-  - [ ] External service health checks
+### Veritabanı
+- [x] Entity Framework Core kurulumu
+- [x] Code-First yaklaşımı
+- [x] Migration sistemi
+- [x] Base entity sınıfları
+- [x] Repository pattern implementasyonu
+- [x] Unit of Work pattern
 
-### 3.2 Authentication & Authorization (Devam)
-- [ ] Password hashing implementasyonu
-- [ ] Refresh token mekanizması
-- [ ] Role-based authorization implementasyonu
-- [ ] External provider entegrasyonu (Google, Microsoft)
-- [ ] Two-factor authentication (2FA)
+### Kullanıcı Yönetimi
+- [x] User entity ve repository
+- [x] Tenant entity ve repository
+- [x] External Provider entity ve repository
+- [x] User CRUD operasyonları
+- [x] User validation kuralları
+- [x] Unique email ve username kontrolleri
 
-### 3.3 User Management
-- [ ] User profil yönetimi
-- [ ] User şifre değiştirme
-- [ ] User e-posta doğrulama
-- [ ] User telefon doğrulama
-- [ ] User profil resmi yükleme
+### Kimlik Doğrulama ve Güvenlik
+- [x] JWT token implementasyonu
+- [x] JWT service ve konfigürasyonu
+- [x] **Password Hashing (BCrypt) implementasyonu**
+- [x] **Password strength validation**
+- [x] **Password verification sistemi**
+- [x] Login endpoint'i
+- [x] Authentication middleware
 
-### 3.4 Tenant Management
-- [ ] Tenant service implementasyonu
-- [ ] Tenant controller'ın oluşturulması
-- [ ] Multi-tenant yapılandırması
-- [ ] Tenant bazlı veri izolasyonu
+### API ve Konfigürasyon
+- [x] Swagger/OpenAPI entegrasyonu
+- [x] Ortam bazlı konfigürasyon (Development, Test, Production)
+- [x] CORS politikaları
+- [x] Connection string yönetimi
+- [x] JWT settings konfigürasyonu
+- [x] Entity Framework detaylı hata mesajları
 
-### 3.5 External Provider Management
-- [ ] External provider service implementasyonu
-- [ ] External provider controller'ın oluşturulması
-- [ ] OAuth entegrasyonu
+### Seed Data
+- [x] Default tenant oluşturma (Test Company)
+- [x] Default admin user oluşturma (test@testcompany.com)
+- [x] Hash'lenmiş şifre ile seed data
 
-### 3.6 Infrastructure
-- [ ] Unit of Work pattern implementasyonu
-- [ ] Repository pattern geliştirmeleri
-- [ ] Database optimizasyonları
+## 🔄 Devam Eden İşler
 
-### 3.7 API
-- [ ] API versiyonlama
-- [ ] API documentation (geliştirme)
-- [ ] API metrics ve monitoring
-- [ ] API response caching
+### Faz 1: Temel Dinamik Sistem
+- [ ] **Modül 1: Dynamic Entity Management**
+  - [ ] Aşama 1.1: Metadata Tables (EntitySchemas, FieldDefinitions)
+  - [ ] Aşama 1.2: Dynamic Entity Service
+  - [ ] Aşama 1.3: Generic CRUD Service
+- [ ] **Modül 2: Form Builder**
+  - [ ] Aşama 2.1: Form Definition System
+  - [ ] Aşama 2.2: Form Engine
+  - [ ] Aşama 2.3: Form Designer API
+- [ ] **Modül 3: Validation System**
+  - [ ] Aşama 3.1: Rule Engine Foundation
+  - [ ] Aşama 3.2: Validation Service
+  - [ ] Aşama 3.3: Validation API
+- [ ] **Modül 4: API Integration**
+  - [ ] Aşama 4.1: Dynamic API Controllers
+  - [ ] Aşama 4.2: Response Management
+  - [ ] Aşama 4.3: Documentation
 
-### 3.8 Testing
-- [ ] Unit test altyapısı
-- [ ] Integration test altyapısı
-- [ ] E2E test altyapısı
-- [ ] Test coverage raporlama
+## 📋 Sıradaki İşler
 
-### 3.9 DevOps
-- [ ] CI/CD pipeline
-- [ ] Docker containerization
-- [ ] Kubernetes deployment
-- [ ] Monitoring ve logging
-- [ ] Backup ve recovery
+### Faz 2: Gelişmiş Dinamik Sistem
+- [ ] Yeni entity oluşturma
+- [ ] İlişki yönetimi
+- [ ] İş akışları
+- [ ] Rapor tasarımı
+- [ ] Advanced form builder
+- [ ] Complex validation rules
 
-## 4. Gelecek Özellikler 🔮
-- [ ] Real-time bildirimler
-- [ ] WebSocket entegrasyonu
-- [ ] GraphQL API
-- [ ] Microservice mimarisi
-- [ ] Event-driven mimari
+### Faz 3: Pro Dinamik Sistem
+- [ ] Özel kod yazma
+- [ ] Plugin sistemi
+- [ ] API entegrasyonları
+- [ ] Gelişmiş iş mantığı
+- [ ] Runtime code compilation
+- [ ] Hot reload
+- [ ] Custom business rules
+- [ ] Advanced workflows
 
-## 5. Optimizasyonlar ⚡
-- [ ] Performance optimizasyonları
-- [ ] Database optimizasyonları
-- [ ] Caching stratejileri
-- [ ] Query optimizasyonları
-- [ ] Resource kullanımı optimizasyonları
+### Refresh Token Mekanizması
+- [ ] Refresh token entity ve repository
+- [ ] Refresh token service implementasyonu
+- [ ] Token refresh endpoint'i
+- [ ] Token revocation endpoint'i
+- [ ] Token rotation güvenliği
 
-## 6. Dokümantasyon 📚
-- [ ] API dokümantasyonu
-- [ ] Deployment dokümantasyonu
-- [ ] Development guide
-- [ ] Architecture dokümantasyonu
-- [ ] Troubleshooting guide
+## 🎯 Sonraki Sprint Hedefleri
 
-## 7. Son Güncellemeler 📅
-### v1.3.0 (Güncel)
-- ✅ Ortam yapılandırması tamamlandı (Development, Test, Production)
-- ✅ Veritabanı yapılandırması tamamlandı (Migration + Seed Data)
-- ✅ API endpoints tamamlandı (User ve Auth controller'ları)
-- ✅ CORS politikaları tamamlandı
-- ✅ Entity Framework detaylı hata mesajları eklendi
+1. **Faz 1 Modül 1: Dynamic Entity Management**
+   - Metadata tabloları oluşturma
+   - Dynamic Entity Service implementasyonu
+   - Generic CRUD operasyonları
+2. **Faz 1 Modül 2: Form Builder Foundation**
+   - Form definition system
+   - Basic form rendering
+   - Form validation
+3. **Faz 1 Modül 3: Validation System**
+   - Rule engine foundation
+   - Basic validation rules
+   - Validation API
 
-### v1.2.0
-- ✅ Validation sistemi tamamlandı
-- ✅ BaseQuery sistemi tamamlandı
-- ✅ JWT Authentication & Authorization tamamlandı
-- ✅ Crosscutting concerns başlangıcı yapıldı
+## 📝 Notlar
 
-### v1.1.0
-- ✅ Temel proje yapısı oluşturuldu
-- ✅ Core katmanı yapılandırıldı
-- ✅ User entity ve servisleri oluşturuldu
+- Password hashing BCrypt ile implement edildi
+- Şifre güvenlik kuralları: minimum 6 karakter, büyük/küçük harf, rakam, özel karakter
+- Default test kullanıcısı: test@testcompany.com / Test123!
+- Default tenant: Test Company
+- JWT token süresi: 30 dakika
+- CORS politikaları ortam bazlı konfigüre edildi
+- **Faz 1'den Faz 3'e uygun altyapı kurulacak**
+- **Köklü değişiklik gerektirmeyecek şekilde tasarlanacak**
+- **Plugin sistemi için hazır altyapı oluşturulacak**
 
-### v1.0.0
-- ✅ Proje başlangıcı 
+## 📅 Faz 1 Timeline
+
+### Hafta 1-2: Metadata Tables
+- EntitySchemas ve FieldDefinitions tabloları
+- Migration oluşturma
+- Temel CRUD operasyonları
+
+### Hafta 3-4: Dynamic Entity Service
+- Service implementasyonu
+- Validation engine
+- Error handling
+
+### Hafta 5-6: API Controllers
+- REST API endpoints
+- Swagger documentation
+- Testing
+
+### Hafta 7-8: Form Builder Foundation
+- Form definition system
+- Basic form rendering
+- Form validation 

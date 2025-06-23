@@ -105,6 +105,11 @@ public static class ServiceRegistration
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ITenantRepository, TenantRepository>();
         services.AddScoped<IExternalProviderRepository, ExternalProviderRepository>();
+        
+        // Add Dynamic Entity Repositories
+        services.AddScoped<IEntitySchemaRepository, EntitySchemaRepository>();
+        services.AddScoped<IFieldDefinitionRepository, FieldDefinitionRepository>();
+        services.AddScoped<IDynamicEntityRepository, DynamicEntityRepository>();
 
         // Add Services
         services.AddScoped<IUserService, UserService>();

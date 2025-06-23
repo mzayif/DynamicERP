@@ -16,6 +16,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<Tenant> Tenants { get; set; } = null!;
     public DbSet<ExternalProvider> ExternalProviders { get; set; } = null!;
     public DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
+    public DbSet<EntitySchema> EntitySchemas { get; set; } = null!;
+    public DbSet<FieldDefinition> FieldDefinitions { get; set; } = null!;
+    public DbSet<DynamicEntity> DynamicEntities { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,6 +29,9 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new TenantConfiguration());
         modelBuilder.ApplyConfiguration(new ExternalProviderConfiguration());
         modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());
+        modelBuilder.ApplyConfiguration(new EntitySchemaConfiguration());
+        modelBuilder.ApplyConfiguration(new FieldDefinitionConfiguration());
+        modelBuilder.ApplyConfiguration(new DynamicEntityConfiguration());
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
