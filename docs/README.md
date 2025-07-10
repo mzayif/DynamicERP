@@ -96,8 +96,9 @@ Email: test@testcompany.com
 - CORS: Sadece belirli domain'lere izin
 - Logging: Error seviyesi
 
-## 📚 Dokümantasyon
+## �� Dokümantasyon
 
+- [HTTP Service Complete Guide](HTTP_SERVICE_COMPLETE_GUIDE.md) - HTTP servis kullanım rehberi
 - [Coding Standards](CODING_STANDARDS.md)
 - [RoadMap](ROADMAP.md)
 

@@ -16,6 +16,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using FluentValidation;
 using System.Text;
+using System.Text.Json;
+using DynamicERP.Core.Services;
+using Microsoft.Extensions.Options;
 
 namespace DynamicERP.API;
 
@@ -115,6 +118,19 @@ public static class ServiceRegistration
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IPasswordService, PasswordService>();
+        services.AddScoped<IRefreshTokenService, RefreshTokenService>();
+        services.AddScoped<ILoggerService, SerilogLoggerService>();
+
+        // HTTP servis konfigürasyonları için Options Pattern
+        services.Configure<HttpServiceOptions>(configuration.GetSection("HttpServiceConfigurations"));
+        
+        // HTTP servisi ekle
+        services.AddHttpClient<IHttpService, HttpService>();
+        services.AddScoped<IHttpService, HttpService>();
+
+        // WCF servisi ekle
+        services.AddHttpClient<IWcfService, WcfService>();
+        services.AddScoped<IWcfService, WcfService>();
      
         // Swagger
         services.AddEndpointsApiExplorer();
@@ -165,4 +181,6 @@ public static class ServiceRegistration
 
         return services;
     }
+
+
 } 
